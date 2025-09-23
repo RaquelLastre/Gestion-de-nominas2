@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": ["C:/Users/Usuario/Documents/GitHub/EntornoServidor/Java/nominas/src"],
+    "java.project.outputPath": "bin", 
+    "javadoc.output": "C:/Users/Usuario/Documents/GitHub/EntornoServidor/Java/nominas/src",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}
