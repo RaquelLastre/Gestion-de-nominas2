@@ -1,47 +1,54 @@
 package Laboral;
 
 import java.util.List;
+import java.util.Scanner;
 
 import Ficheros.GestorFicherosEmpleados;
 
 public class CalculaNominas {
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
-        Empleado jc = null;
-        Empleado al = null;
-        try {
-            jc = new Empleado("James Cosling", "32000032G", "M", 4, 7);
-            al = new Empleado("Ada Lovelace", "32000031R", "F");
-        } catch (Exception e) {
-            System.out.println("Datos no correctos");
-        }
-
-        escribe(jc, al);
-
-        al.incrAnyo();
-        jc.setCategoria(9);
-
-        escribe(jc, al);
-
         List<Empleado> listaEmpleados = new GestorFicherosEmpleados().leerFicheroEmpleados();
-        Empleado e1 = listaEmpleados.get(0);
-        Empleado e2 = listaEmpleados.get(1);
-        escribe(e1, e2);
+        for (int i = 0; i < listaEmpleados.size(); i++) {
+            Empleado e = listaEmpleados.get(i);
+            escribe(e);
+        }
+        GestorFicherosEmpleados gf = new GestorFicherosEmpleados();
+        gf.escribirFicheroEmpleados(listaEmpleados);
+        gf.altaEmpleados();
+
+        int opcion = 0;
+        System.out.println("a");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("b");
+        do {
+            System.out.println("Escribe tu opcion \n 1: Mostrar toda la informacion" +
+                    "\n 2: Mostrar salario de un empleado por DNI \n 3:Modificar datos de un empleado" +
+                    "\n 4: Recalcular y actualizar sueldo de un empleado \n 5: Recalcular y actualizar sueldo de todos los empleados"
+                    + "\n 6: Realizar copia de seguridad de la base de datos");
+            opcion = sc.nextInt();
+        } while (opcion < 1 || opcion > 6);
+        sc.close();
+        switch (opcion) {
+            case 0:
+
+                break;
+
+            default:
+                break;
+        }
 
     }
 
     /**
      * @param emp
-     * @param emp2
      */
-    private static void escribe(Empleado emp, Empleado emp2) {
+
+    private static void escribe(Empleado emp) {
         Nomina n = new Nomina();
-        System.out.println(emp.nombre + "->  DNI: " + emp.dni + ", sexo: " + emp.sexo
-                + ", categoria: " + emp.getCategoria() + ", años: " + emp.anyos + ", sueldo: " + n.sueldo(emp) +
-                ". " + emp2.nombre + "->  DNI: " + emp2.dni + ", sexo: " + emp2.sexo);
+
+        System.out.println(emp.nombre + "->  DNI: " + emp.dni + ", sexo: " + emp.sexo + ", categoria: "
+                + emp.getCategoria() + ", años: " + emp.anyos + ", sueldo: " + n.sueldo(emp));
     }
 
 }
