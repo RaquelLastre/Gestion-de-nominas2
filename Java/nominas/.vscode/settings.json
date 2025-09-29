@@ -1,8 +1,0 @@
-{
-  "java.project.sourcePaths": ["C:/Users/Usuario/Documents/GitHub/EntornoServidor/Java/nominas/src/Laboral"],
-  "java.project.outputPath": "bin", 
-  "javadoc.output": "C:/Users/Usuario/Documents/GitHub/EntornoServidor/Java/nominas/docs", 
-  "java.project.referencedLibraries": [
-    "lib/**/*.jar"
-  ]
-}
