@@ -5,6 +5,7 @@
 package com.mycompany.gestionnominas2.Laboral;
 
 import com.mycompany.gestionnominas2.Ficheros.GestorFicherosEmpleados;
+import com.mycompany.gestionnominas2.Ficheros.MenuOpciones;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ import java.util.Scanner;
  * @author Raquel L A
  */
 public class CalculaNominas {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DatosNoCorrectosException {
 
         List<Empleado> listaEmpleados = new GestorFicherosEmpleados().leerFicheroEmpleados();
         
@@ -25,6 +26,8 @@ public class CalculaNominas {
         gf.escribirFicheroEmpleados(listaEmpleados);
         gf.altaEmpleados();
 
+        
+        
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
         do {
@@ -32,16 +35,36 @@ public class CalculaNominas {
                                Escribe tu opcion 
                                 1: Mostrar toda la informacion
                                 2: Mostrar salario de un empleado por DNI 
-                                3:Modificar datos de un empleado
+                                3: Modificar datos de un empleado
                                 4: Recalcular y actualizar sueldo de un empleado 
                                 5: Recalcular y actualizar sueldo de todos los empleados
                                 6: Realizar copia de seguridad de la base de datos""");
             opcion = sc.nextInt();
         } while (opcion < 1 || opcion > 6);
-        sc.close();
+        
+        Scanner scs = new Scanner(System.in);
         switch (opcion) {
-            case 0:
-
+            case 1:
+                MenuOpciones.mostrarTodaLaInformacion();
+                break;
+            case 2:
+                System.out.println("Escribe el dni");
+                String dni = scs.nextLine();
+                MenuOpciones.mostrarSueldoConDNI(dni);
+                break;
+            case 3:
+                MenuOpciones.submenu();
+                break;
+            case 4:
+                System.out.println("Escribe el dni");
+                String dni2 = scs.nextLine();
+                MenuOpciones.recalcularSueldo(dni2);
+                break;
+            case 5:
+                MenuOpciones.recalcularSueltoTodos();
+                break;
+            case 6:
+                MenuOpciones.copiaSeguridad();
                 break;
 
             default:

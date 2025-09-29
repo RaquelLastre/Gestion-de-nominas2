@@ -24,7 +24,7 @@ public class GestorFicherosEmpleados {
     public List<Empleado> leerFicheroEmpleados() {
 
         List<Empleado> listaEmpleados = new ArrayList<>();
-        String ruta = "../Data/empleados.txt";
+        String ruta = "Data/empleados.txt";
         String separador = ";";
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
@@ -99,6 +99,39 @@ public class GestorFicherosEmpleados {
 
                 ps.executeUpdate();
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+        public void altaEmpleados(String rutaArchivo) {
+        String insert = "INSERT INTO empleados (nombre, dni, sexo, categoria, anyos) VALUES (?, ?, ?, ?, ?)";
+        String ruta = rutaArchivo;
+
+        try (Connection con = DBUtils.getConnection();
+                PreparedStatement ps = con.prepareStatement(insert);
+                BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+
+            String cadena;
+            
+            if ((cadena = br.readLine()) != null) {
+                String[] datos = cadena.split(";");
+
+                Empleado e = new Empleado(datos[0].trim(), datos[1].trim(), datos[2].trim(),
+                        Integer.parseInt(datos[3].trim()), Integer.parseInt(datos[3].trim()));
+
+                ps.setString(1, e.nombre);
+                ps.setString(2, e.dni);
+                ps.setString(3, e.sexo);
+                ps.setInt(4, e.getCategoria());
+                ps.setInt(5, e.anyos);
+
+                Nomina n = new Nomina();
+                ps.setDouble(6, n.sueldo(e));
+
+                ps.executeUpdate();
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
