@@ -7,7 +7,6 @@ package com.mycompany.gestionnominas2.Ficheros;
 import com.mycompany.gestionnominas2.Laboral.DatosNoCorrectosException;
 import com.mycompany.gestionnominas2.Laboral.Empleado;
 import com.mycompany.gestionnominas2.Laboral.Nomina;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.sql.Connection;
@@ -65,40 +64,38 @@ public class MenuOpciones {
             System.out.println(e.getMessage());
         }
     }
-    
-    public static void recalcularSueldo(String dni)
-    {
+
+    public static void recalcularSueldo(String dni) {
         String insert = "update nominas set sueldo = ? WHERE dni =?;";
 
         try (Connection con = DBUtils.getConnection();
                 PreparedStatement ps = con.prepareStatement(insert);) {
-            
+
             Nomina n = new Nomina();
             int sueldo = n.sueldo(new Empleado(null, null, dni));
-            
+
             ps.setInt(1, sueldo);
             ps.setString(2, dni);
-                
+
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }    
-    
-    public static void submenu() throws DatosNoCorrectosException{
+    }
+
+    public static void submenu() throws DatosNoCorrectosException {
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("""
-                               Campo para modificar 
-                                1: nombre
-                                2: sexo 
-                                3: categoria
-                                4: años
-                               """);
+                    Campo para modificar
+                     1: nombre
+                     2: sexo
+                     3: categoria
+                     4: años
+                    """);
             opcion = sc.nextInt();
         } while (opcion < 1 || opcion > 4);
-        String cadena = "";
         Scanner scs = new Scanner(System.in);
         System.out.println("Escribe el dni del empleado a modificar");
         String dni = scs.nextLine();
@@ -131,26 +128,28 @@ public class MenuOpciones {
             default:
                 break;
         }
-                
+
         try (Connection con = DBUtils.getConnection();
                 PreparedStatement ps = con.prepareStatement(sentencia);) {
 
-            if(opcion == 1||opcion==2){
-                 ps.setString(1, hueco);
-            }else{
+            if (opcion == 1 || opcion == 2) {
+                ps.setString(1, hueco);
+            } else {
                 ps.setInt(1, numhueco);
             }
-           
+
             ps.setString(2, dni);
-                
+
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        sc.close();
+        scs.close();
     }
-    
-    public static void recalcularSueltoTodos(){
-        
+
+    public static void recalcularSueltoTodos() {
+
         String select = "select nombre, sexo, dni from empleados;";
         String insert = "update nominas set sueldo = ? WHERE dni =?;";
 
@@ -158,46 +157,46 @@ public class MenuOpciones {
                 PreparedStatement ps = con.prepareStatement(select);
                 ResultSet rs = ps.executeQuery();
                 PreparedStatement psInsert = con.prepareStatement(insert)) {
-            
+
             Nomina n = new Nomina();
-            
-            while (rs.next()) {                
+
+            while (rs.next()) {
                 Empleado e = new Empleado(rs.getString("nombre"), rs.getString("sexo"), rs.getString("dni"));
                 int sueldo = n.sueldo(e);
-                
+
                 psInsert.setInt(1, sueldo);
                 psInsert.setString(2, e.dni);
                 psInsert.executeUpdate();
-            }  
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
-    public static void copiaSeguridad(){
+
+    public static void copiaSeguridad() {
         String ruta = "../Data/CopiaSeguridad.txt";
         String select = "select e.nombre, e.dni, e.sexo, e.categoria, e.anos, n.sueldo from empleados e join nominas n on e.dni = n.dni";
-        
-        try(Connection con = DBUtils.getConnection();
+
+        try (Connection con = DBUtils.getConnection();
                 PreparedStatement ps = con.prepareStatement(select);
                 ResultSet rs = ps.executeQuery();
                 BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
-            
-            while (rs.next()) {  
+
+            while (rs.next()) {
                 String cadena = "";
-                cadena +="Nombre: "+ rs.getString("nombre");
-                cadena +=", DNi: "+ rs.getString("dni");
-                cadena +=", Sexo: "+ rs.getString("sexo");
-                cadena +=", Categoria: "+ rs.getInt("categoria");
-                cadena +=", Años: "+ rs.getInt("anos");
-                cadena +=", Sueldo: "+ rs.getInt("sueldo");
+                cadena += "Nombre: " + rs.getString("nombre");
+                cadena += ", DNi: " + rs.getString("dni");
+                cadena += ", Sexo: " + rs.getString("sexo");
+                cadena += ", Categoria: " + rs.getInt("categoria");
+                cadena += ", Años: " + rs.getInt("anos");
+                cadena += ", Sueldo: " + rs.getInt("sueldo");
                 bw.write(cadena);
                 bw.newLine();
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 }

@@ -1,0 +1,21 @@
+
+create database gestion_nominas;
+use gestion_nominas;
+
+
+create table empleados (
+    dni varchar(15) primary key,
+    nombre varchar(100),
+    sexo char(1),
+    categoria int,
+    anyos int
+);
+
+create table nominas (
+    dni varchar(15) primary key,
+    sueldo double,
+    foreign key (dni) references empleados(dni)
+);
+
+insert into empleados (nombre, dni, sexo, categoria, anyos) values ("James Cosling", "32000032G", 'M', 4, 7);
+insert into empleados (nombre, dni, sexo, categoria, anyos) values ("Ada Lovelace", "32000031R", 'F', 1, 4);

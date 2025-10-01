@@ -24,7 +24,7 @@ public class GestorFicherosEmpleados {
     public List<Empleado> leerFicheroEmpleados() {
 
         List<Empleado> listaEmpleados = new ArrayList<>();
-        String ruta = "Data/empleados.txt";
+        String ruta = "src\\main\\java\\com\\mycompany\\gestionnominas2\\Data\\empleados.txt";
         String separador = ";";
 
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
@@ -56,7 +56,7 @@ public class GestorFicherosEmpleados {
 
     public void escribirFicheroEmpleados(List<Empleado> empleados) {
 
-        String ruta = "../Data/salarios.dat";
+        String ruta = "src\\main\\java\\com\\mycompany\\gestionnominas2\\Data\\salarios.dat";
 
         List<Empleado> listaEmpleados = empleados;
 
@@ -73,8 +73,8 @@ public class GestorFicherosEmpleados {
     }
 
     public void altaEmpleados() {
-        String insert = "INSERT INTO empleados (nombre, dni, sexo, categoria, anyos) VALUES (?, ?, ?, ?, ?)";
-        String ruta = "../Data/empleadosNuevos.txt";
+        String insert = "insert into empleados (nombre, dni, sexo, categoria, anyos) values (?, ?, ?, ?, ?)";
+        String ruta = "src\\main\\java\\com\\mycompany\\gestionnominas2\\Data\\empleadosNuevos.txt";
 
         try (Connection con = DBUtils.getConnection();
                 PreparedStatement ps = con.prepareStatement(insert);
@@ -103,9 +103,9 @@ public class GestorFicherosEmpleados {
             System.out.println(e.getMessage());
         }
     }
-    
-        public void altaEmpleados(String rutaArchivo) {
-        String insert = "INSERT INTO empleados (nombre, dni, sexo, categoria, anyos) VALUES (?, ?, ?, ?, ?)";
+
+    public void altaEmpleados(String rutaArchivo) {
+        String insert = "insert into empleados (nombre, dni, sexo, categoria, anyos) values (?, ?, ?, ?, ?)";
         String ruta = rutaArchivo;
 
         try (Connection con = DBUtils.getConnection();
@@ -113,7 +113,7 @@ public class GestorFicherosEmpleados {
                 BufferedReader br = new BufferedReader(new FileReader(ruta))) {
 
             String cadena;
-            
+
             if ((cadena = br.readLine()) != null) {
                 String[] datos = cadena.split(";");
 

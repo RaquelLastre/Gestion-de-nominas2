@@ -17,7 +17,7 @@ public class CalculaNominas {
     public static void main(String[] args) throws DatosNoCorrectosException {
 
         List<Empleado> listaEmpleados = new GestorFicherosEmpleados().leerFicheroEmpleados();
-        
+
         for (int i = 0; i < listaEmpleados.size(); i++) {
             Empleado e = listaEmpleados.get(i);
             escribe(e);
@@ -26,22 +26,21 @@ public class CalculaNominas {
         gf.escribirFicheroEmpleados(listaEmpleados);
         gf.altaEmpleados();
 
-        
-        
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("""
-                               Escribe tu opcion 
-                                1: Mostrar toda la informacion
-                                2: Mostrar salario de un empleado por DNI 
-                                3: Modificar datos de un empleado
-                                4: Recalcular y actualizar sueldo de un empleado 
-                                5: Recalcular y actualizar sueldo de todos los empleados
-                                6: Realizar copia de seguridad de la base de datos""");
+                    Escribe tu opcion
+                     1: Mostrar toda la informacion
+                     2: Mostrar salario de un empleado por DNI
+                     3: Modificar datos de un empleado
+                     4: Recalcular y actualizar sueldo de un empleado
+                     5: Recalcular y actualizar sueldo de todos los empleados
+                     6: Realizar copia de seguridad de la base de datos""");
             opcion = sc.nextInt();
+            System.out.println("Opcion " + opcion);
         } while (opcion < 1 || opcion > 6);
-        
+
         Scanner scs = new Scanner(System.in);
         switch (opcion) {
             case 1:
@@ -70,6 +69,8 @@ public class CalculaNominas {
             default:
                 break;
         }
+        sc.close();
+        scs.close();
 
     }
 
