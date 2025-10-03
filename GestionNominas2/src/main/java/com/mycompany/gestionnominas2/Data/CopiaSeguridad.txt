@@ -1,2 +1,2 @@
-32000032G;James Cosling;M;4;7
-32000031R;Ada Lovelace;M;1;4
+Nombre: aab, DNi: 11154334A, Sexo: F, Categoria: 2, Años: 3, Sueldo: 85000
+Nombre: aaaa, DNi: 23480965B, Sexo: F, Categoria: 3, Años: 2, Sueldo: 75000

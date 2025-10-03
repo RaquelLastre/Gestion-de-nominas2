@@ -28,6 +28,7 @@ public class CalculaNominas {
 
         int opcion = 0;
         Scanner sc = new Scanner(System.in);
+        Scanner scs = new Scanner(System.in);
         do {
             System.out.println("""
                     Escribe tu opcion
@@ -39,36 +40,35 @@ public class CalculaNominas {
                      6: Realizar copia de seguridad de la base de datos""");
             opcion = sc.nextInt();
             System.out.println("Opcion " + opcion);
-        } while (opcion < 1 || opcion > 6);
 
-        Scanner scs = new Scanner(System.in);
-        switch (opcion) {
-            case 1:
-                MenuOpciones.mostrarTodaLaInformacion();
-                break;
-            case 2:
-                System.out.println("Escribe el dni");
-                String dni = scs.nextLine();
-                MenuOpciones.mostrarSueldoConDNI(dni);
-                break;
-            case 3:
-                MenuOpciones.submenu();
-                break;
-            case 4:
-                System.out.println("Escribe el dni");
-                String dni2 = scs.nextLine();
-                MenuOpciones.recalcularSueldo(dni2);
-                break;
-            case 5:
-                MenuOpciones.recalcularSueltoTodos();
-                break;
-            case 6:
-                MenuOpciones.copiaSeguridad();
-                break;
+            switch (opcion) {
+                case 1:
+                    MenuOpciones.mostrarTodaLaInformacion();
+                    break;
+                case 2:
+                    System.out.println("Escribe el dni");
+                    String dni = scs.nextLine();
+                    MenuOpciones.mostrarSueldoConDNI(dni);
+                    break;
+                case 3:
+                    MenuOpciones.submenu();
+                    break;
+                case 4:
+                    System.out.println("Escribe el dni");
+                    String dni2 = scs.nextLine();
+                    MenuOpciones.recalcularSueldo(dni2);
+                    break;
+                case 5:
+                    MenuOpciones.recalcularSueltoTodos();
+                    break;
+                case 6:
+                    MenuOpciones.copiaSeguridad();
+                    break;
 
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
+        } while (opcion != 0);
         sc.close();
         scs.close();
 

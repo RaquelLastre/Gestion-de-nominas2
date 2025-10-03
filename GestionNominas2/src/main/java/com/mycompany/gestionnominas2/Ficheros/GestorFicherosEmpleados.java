@@ -73,11 +73,13 @@ public class GestorFicherosEmpleados {
     }
 
     public void altaEmpleados() {
-        String insert = "insert into empleados (nombre, dni, sexo, categoria, anyos) values (?, ?, ?, ?, ?)";
+        String insert = "insert into empleados (nombre, dni, sexo, categoria, anos) values (?, ?, ?, ?, ?)";
+        String insertNomina = "insert into nominas (dni, salario) values (?, ?)";
         String ruta = "src\\main\\java\\com\\mycompany\\gestionnominas2\\Data\\empleadosNuevos.txt";
 
         try (Connection con = DBUtils.getConnection();
                 PreparedStatement ps = con.prepareStatement(insert);
+                PreparedStatement psn = con.prepareStatement(insertNomina);
                 BufferedReader br = new BufferedReader(new FileReader(ruta))) {
 
             String cadena;
@@ -86,7 +88,7 @@ public class GestorFicherosEmpleados {
                 String[] datos = cadena.split(";");
 
                 Empleado e = new Empleado(datos[0].trim(), datos[1].trim(), datos[2].trim(),
-                        Integer.parseInt(datos[3].trim()), Integer.parseInt(datos[3].trim()));
+                        Integer.parseInt(datos[3].trim()), Integer.parseInt(datos[4].trim()));
 
                 ps.setString(1, e.nombre);
                 ps.setString(2, e.dni);
@@ -95,9 +97,11 @@ public class GestorFicherosEmpleados {
                 ps.setInt(5, e.anyos);
 
                 Nomina n = new Nomina();
-                ps.setDouble(6, n.sueldo(e));
+                psn.setString(1, e.dni);
+                psn.setDouble(2, n.sueldo(e));
 
                 ps.executeUpdate();
+                psn.executeUpdate();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
