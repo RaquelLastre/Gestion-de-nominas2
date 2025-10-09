@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="309e830e-487f-4130-a0b7-d52c0dd9989e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Data/CopiaSeguridad.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Data/CopiaSeguridad.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Data/empleadosNuevos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Data/empleadosNuevos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Ficheros/GestorFicherosEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Ficheros/GestorFicherosEmpleados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Ficheros/MenuOpciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Ficheros/MenuOpciones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Laboral/CalculaNominas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/gestionnominas2/Laboral/CalculaNominas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +15,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="33YMFHhBK2xepuoqDWG1POHstXW" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,6 +28,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -61,6 +57,7 @@
       <option name="presentableId" value="Default" />
       <updated>1759489450397</updated>
       <workItem from="1759489450397" duration="809000" />
+      <workItem from="1759826616738" duration="175000" />
     </task>
     <servers />
   </component>

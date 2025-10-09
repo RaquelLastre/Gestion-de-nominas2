@@ -172,8 +172,7 @@ public class MenuOpciones {
 
     public static void recalcularSueltoTodos() {
 
-        String select = "select nombre, sexo, dni from empleados;";
-        String comprobarExiste = "select salario from nominas where dni = ?";
+        String select = "select nombre, sexo, dni, categoria, anos from empleados;";
         String insert = "update nominas set salario = ? WHERE dni =?;";
 
         try (Connection con = DBUtils.getConnection();
@@ -184,7 +183,8 @@ public class MenuOpciones {
             Nomina n = new Nomina();
 
             while (rs.next()) {
-                Empleado e = new Empleado(rs.getString("nombre"), rs.getString("sexo"), rs.getString("dni"));
+                Empleado e = new Empleado(rs.getString("nombre"), rs.getString("sexo"), rs.getString("dni"),
+                        rs.getInt("categoria"), rs.getInt("anos"));
                 int sueldo = n.sueldo(e);
 
                 psInsert.setInt(1, sueldo);
